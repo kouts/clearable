@@ -1,5 +1,6 @@
 /*
-Copyright 2014 Giannis Koutsaftakis
+Copyright 2014 Giannis Koutsaftakis - info@webrunapps.com
+http://www.webrunapps.com
 
 Version: 1.0.0 Timestamp: Wed Jan 15 10:41:33 EET 2014
 
