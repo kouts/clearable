@@ -2,7 +2,7 @@
 Copyright 2014 Giannis Koutsaftakis - info@webrunapps.com
 http://www.webrunapps.com
 
-Version: 1.0.0 Timestamp: Wed Jan 15 10:41:33 EET 2014
+Version: 1.0.0 Timestamp: Wed Jan 15 15:45:44 EET 2014
 
 This software is licensed under the Apache License, Version 2.0 (the "Apache License") or the GNU
 General Public License version 2 (the "GPL License"). You may choose either license to govern your
