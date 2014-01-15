@@ -58,20 +58,20 @@
       <div class="row">
         <div class="col-sm-4">
           <label>Bootstrap (Default, uses Boootstrap classes)</label>
-          <div class="clearable-input-wrapper">
-            <input type="text" name="demo_1" value="" class="form-control clearable-input" />
+          <div class="clearable-wrapper">
+            <input type="text" name="demo_1" value="" class="form-control clearable" />
           </div>
         </div>
         <div class="col-sm-4">
           <label>Regular (Using custom css class for icon)</label>
-          <div class="clearable-input-wrapper">
-            <input type="text" name="demo_2" value="" style="width:100%" class="clearable-input-2" />
+          <div class="clearable-wrapper">
+            <input type="text" name="demo_2" value="" style="width:100%" class="clearable-2" />
           </div>
         </div>
         <div class="col-sm-4">
           <label>Regular (Using inline css for icon)</label>
-          <div class="clearable-input-wrapper">
-            <input type="text" name="demo_3" value="" style="width:100%" class="clearable-input-3" />
+          <div class="clearable-wrapper">
+            <input type="text" name="demo_3" value="" style="width:100%" class="clearable-3" />
           </div>
         </div>
       </div>
@@ -87,19 +87,19 @@
     <script src="jquery.clearable.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-		$('.clearable-input').clearable({
+		$('.clearable').clearable({
 			adjust_right: '6px',
 			adjust_top: '10px'
 		});
 
-		$('.clearable-input-2').clearable({
+		$('.clearable-2').clearable({
 			adjust_right: '6px',
 			adjust_top: '7px',
 			icon: '<div/>',
 			icon_class: 'regular-close'
 		});
 
-		$('.clearable-input-3').clearable({
+		$('.clearable-3').clearable({
 			adjust_right: '6px',
 			adjust_top: '7px',
 			icon: '<div style="display: block;background: url(img/close.png) top left no-repeat;width:8px;height:8px;"></div>',

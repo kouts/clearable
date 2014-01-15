@@ -28,7 +28,7 @@ permissions and limitations under the Apache License and the GPL License.
 		var opts = $.extend({}, $.fn.clearable.options, options || {});
 
 		$(document).on('keyup', this.selector, function(){
-			$(this).parents('div').first().css('position', 'relative');
+			$(this).parents('div.'+opts.wrapper_class).first().css('position', 'relative');
 			var icon = $(opts.icon).addClass(opts.icon_class+' '+opts.icon_close_class).css({
 				'position':'absolute',
 				'right':opts['adjust_right'],
