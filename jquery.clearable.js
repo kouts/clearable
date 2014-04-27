@@ -19,6 +19,7 @@ or the GPL Licesnse is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CO
 either express or implied. See the Apache License and the GPL License for the specific language governing
 permissions and limitations under the Apache License and the GPL License.
 */
+//Comment added
 
 (function($) {
 	"use strict";
