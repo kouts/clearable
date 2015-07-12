@@ -53,7 +53,7 @@ permissions and limitations under the Apache License and the GPL License.
 				}
 			}
 		}).on('click', '.'+opts.icon_close_class, function(){
-			$(this).prevAll('input:first').val('');
+			$(this).prevAll('input:first').val('').focus();
 			$(this).hide();
 		});
 	};
