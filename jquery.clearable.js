@@ -30,18 +30,23 @@ permissions and limitations under the Apache License and the GPL License.
 	
 	$.fn.clearable = function(options){
 
-		var opts = $.extend({}, $.fn.clearable.options, options || {});
+		options = $.extend($.fn.clearable.defaults, options);
 
 		$(document).on('keyup paste', this.selector, function(){
-			$(this).parents('div.'+opts.wrapper_class).first().css('position', 'relative');
-			var icon = $(opts.icon).addClass(opts.icon_class+' '+opts.icon_close_class).css({
+			var $wrapper = $(this).parents('div.'+options.wrapper_class).first();
+			if($wrapper.length === 0){
+				$(this).wrap('<div class="'+options.wrapper_class+'"/>').focus();
+			}
+			$wrapper.css('position', 'relative');
+			var icon = $(options.icon).addClass(options.icon_class+' '+options.icon_close_class).css({
 				'position':'absolute',
-				'right':opts['adjust_right'],
-				'top':opts['adjust_top'],
+				'right':options['adjust_right'],
+				'top':options['adjust_top'],
 				'cursor':'pointer',
-				'display':'none'
+				'display':'none',
+				'z-index':'1000'
 			});
-			var next_icon = $(this).nextAll('.'+opts.icon_close_class).first();
+			var next_icon = $(this).nextAll('.'+options.icon_close_class).first();
 			if($(this).val()==''){
 				next_icon.hide();
 			}else{
@@ -49,18 +54,21 @@ permissions and limitations under the Apache License and the GPL License.
 					next_icon.fadeIn(200);
 				}else{
 					$(this).after(icon).fadeIn(200);
-					$(this).nextAll('.'+opts.icon_close_class).first().fadeIn(200);
+					$(this).nextAll('.'+options.icon_close_class).first().fadeIn(200);
 				}
 			}
-		}).on('click', '.'+opts.icon_close_class, function(){
-			$(this).prevAll('input:first').val('').focus();
+		}).off('click').on('click', '.'+options.icon_close_class, function(){
+			var $input = $(this).prevAll('input:first');
+			$input.val('').focus();
 			$(this).hide();
+			options.onClose($input, this);
 		});
 	};
 
-	$.fn.clearable.options = {
+	$.fn.clearable.defaults = {
+		onClose: function(){},
 		wrapper_class: 'clearable-wrapper',
-		icon: '<i/>',
+		icon: '<span/>',
 		icon_class: 'glyphicon glyphicon-remove',
 		icon_close_class: 'clearable-close',
 		adjust_right: '2px',
