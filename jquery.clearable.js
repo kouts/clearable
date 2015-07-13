@@ -1,8 +1,8 @@
 /*
-Copyright 2014 Giannis Koutsaftakis - info@webrunapps.com
+Copyright 2015 Ioannis Koutsaftakis - info@webrunapps.com
 http://www.webrunapps.com
 
-Version: 1.0.0 Timestamp: Wed Jan 15 15:45:44 EET 2014
+Version: 1.0.3 Timestamp: Mon Jul 13 20:31:33 EET 2015
 
 This software is licensed under the Apache License, Version 2.0 (the "Apache License") or the GNU
 General Public License version 2 (the "GPL License"). You may choose either license to govern your
@@ -19,11 +19,6 @@ or the GPL Licesnse is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CO
 either express or implied. See the Apache License and the GPL License for the specific language governing
 permissions and limitations under the Apache License and the GPL License.
 */
-<<<<<<< HEAD
-//Comment added
-=======
-/* comment added by papas*/
->>>>>>> origin/master
 
 (function($) {
 	"use strict";
@@ -57,7 +52,7 @@ permissions and limitations under the Apache License and the GPL License.
 					$(this).nextAll('.'+options.icon_close_class).first().fadeIn(200);
 				}
 			}
-		}).off('click').on('click', '.'+options.icon_close_class, function(){
+		}).off('click', '.'+options.icon_close_class).on('click', '.'+options.icon_close_class, function(){
 			var $input = $(this).prevAll('input:first');
 			$input.val('').focus();
 			$(this).hide();
