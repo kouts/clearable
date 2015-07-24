@@ -2,7 +2,7 @@
 Copyright 2015 Ioannis Koutsaftakis - info@webrunapps.com
 http://www.webrunapps.com
 
-Version: 1.0.3 Timestamp: Mon Jul 13 20:31:33 EET 2015
+Version: 1.0.4 Timestamp: Fri Jul 24 10:33:00 EET 2015
 
 This software is licensed under the Apache License, Version 2.0 (the "Apache License") or the GNU
 General Public License version 2 (the "GPL License"). You may choose either license to govern your
@@ -23,14 +23,15 @@ permissions and limitations under the Apache License and the GPL License.
 (function($) {
 	"use strict";
 	
-	$.fn.clearable = function(options){
+	$.fn.clearable = function(settings){
 
-		options = $.extend($.fn.clearable.defaults, options);
+		var options = $.extend(true, {}, $.fn.clearable.defaults, settings);
 
 		$(document).on('keyup paste', this.selector, function(){
-			var $wrapper = $(this).parents('div.'+options.wrapper_class).first();
+			var $input = $(this);
+			var $wrapper = $input.parents('div.'+options.wrapper_class).first();
 			if($wrapper.length === 0){
-				$(this).wrap('<div class="'+options.wrapper_class+'"/>').focus();
+				$input.wrap('<div class="'+options.wrapper_class+'"/>').focus();
 			}
 			$wrapper.css('position', 'relative');
 			var icon = $(options.icon).addClass(options.icon_class+' '+options.icon_close_class).css({
@@ -41,23 +42,26 @@ permissions and limitations under the Apache License and the GPL License.
 				'display':'none',
 				'z-index':'1000'
 			});
-			var next_icon = $(this).nextAll('.'+options.icon_close_class).first();
-			if($(this).val()==''){
+			var next_icon = $input.nextAll('.'+options.icon_close_class).first();
+
+			if($input.val()==''){
 				next_icon.hide();
 			}else{
 				if(next_icon.length){
 					next_icon.fadeIn(200);
 				}else{
-					$(this).after(icon).fadeIn(200);
-					$(this).nextAll('.'+options.icon_close_class).first().fadeIn(200);
+					$input.after(icon).fadeIn(200);
+					var next_icon = $input.nextAll('.'+options.icon_close_class).first();
+					next_icon.fadeIn(200);
+					next_icon.off('click').on('click', function(){
+						$input.val('').focus();
+						$(this).hide();
+						options.onClose($input, this);
+					});
 				}
 			}
-		}).off('click', '.'+options.icon_close_class).on('click', '.'+options.icon_close_class, function(){
-			var $input = $(this).prevAll('input:first');
-			$input.val('').focus();
-			$(this).hide();
-			options.onClose($input, this);
 		});
+
 	};
 
 	$.fn.clearable.defaults = {
