@@ -2,7 +2,7 @@
 Copyright 2015 Ioannis Koutsaftakis - info@webrunapps.com
 http://www.webrunapps.com
 
-Version: 1.0.4 Timestamp: Fri Jul 24 10:33:00 EET 2015
+Version: 1.0.5 Timestamp: Wed Aug 05 10:11:00 EET 2015
 
 This software is licensed under the Apache License, Version 2.0 (the "Apache License") or the GNU
 General Public License version 2 (the "GPL License"). You may choose either license to govern your
@@ -27,12 +27,20 @@ permissions and limitations under the Apache License and the GPL License.
 
 		var options = $.extend(true, {}, $.fn.clearable.defaults, settings);
 
-		$(document).on('keyup paste', this.selector, function(){
+		$(document).on('focus', this.selector, function(){
 			var $input = $(this);
 			var $wrapper = $input.parents('div.'+options.wrapper_class).first();
 			if($wrapper.length === 0){
-				$input.wrap('<div class="'+options.wrapper_class+'"/>').focus();
+				$input.wrap('<div class="'+options.wrapper_class+'"/>');
+				setTimeout(function(){
+					$input.focus();
+				}, 0);
 			}
+		});
+
+		$(document).on('keyup paste', this.selector, function(){
+			var $input = $(this);
+			var $wrapper = $input.parents('div.'+options.wrapper_class).first();
 			$wrapper.css('position', 'relative');
 			var icon = $(options.icon).addClass(options.icon_class+' '+options.icon_close_class).css({
 				'position':'absolute',
